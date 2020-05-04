@@ -38,3 +38,7 @@ The sum of the digits the digital timer would show.
 ##Technical
 * java 13
 * maven
+* jupiter parametrized tests to test two implementations with the same tests
+* solution in two implementations
+* * old school way (my favourite)
+* * lambdas

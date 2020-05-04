@@ -2,14 +2,24 @@ package triau.lilian.training.katas.lateride;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import triau.lilian.training.katas.lateride.impl.LambdaTimeCalculator;
+import triau.lilian.training.katas.lateride.impl.OldSchoolTimeCalculator;
 
 public class TimeCalculatorTest {
 
-	TimeCalculator timeCalculator = new TimeCalculator();
+	public static Stream<Arguments> provideTimeCalculator() {
+		return Stream.of(Arguments.of(new OldSchoolTimeCalculator()), Arguments.of(new LambdaTimeCalculator()));
+	}
 
-	@Test
-	public void renderTimeSinceMidnightWhenZeroMinuteHasPassedShouldReturn0() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhenZeroMinuteHasPassedShouldReturn0(TimeCalculator timeCalculator) {
 		int minutePassed = 0;
 		int expected = 0;
 
@@ -18,8 +28,10 @@ public class TimeCalculatorTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void renderTimeSinceMidnightWhenLessThan10MinutesHavePassedShouldReturnTheMinutesPassed() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhenLessThan10MinutesHavePassedShouldReturnTheMinutesPassed(
+			TimeCalculator timeCalculator) {
 		int minutePassed = 9;
 		int expected = 9;
 
@@ -28,8 +40,10 @@ public class TimeCalculatorTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void renderTimeSinceMidnightWhenLessThanOneHourHasPassedShouldReturnTheSumOfDigitsOfTheMinutes() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhenLessThanOneHourHasPassedShouldReturnTheSumOfDigitsOfTheMinutes(
+			TimeCalculator timeCalculator) {
 		int minutePassed = 59;
 		int expected = 14;
 
@@ -38,8 +52,10 @@ public class TimeCalculatorTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void renderTimeSinceMidnightWhenMoreThanOneHourHasPassedShouldReturnTheSumOfDigitsOfTheHoursAndTheMinutes() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhenMoreThanOneHourHasPassedShouldReturnTheSumOfDigitsOfTheHoursAndTheMinutes(
+			TimeCalculator timeCalculator) {
 		int minutePassed = 60;
 		int expected = 1;
 
@@ -48,8 +64,9 @@ public class TimeCalculatorTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void renderTimeSinceMidnightWhenTwoHoursHavePassedShouldReturn4() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhenTwoHoursHavePassedShouldReturn4(TimeCalculator timeCalculator) {
 		int minutePassed = 240;
 		int expected = 4;
 
@@ -58,8 +75,9 @@ public class TimeCalculatorTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	public void renderTimeSinceMidnightWhen808MinutesHavePassedShouldReturn4() {
+	@ParameterizedTest
+	@MethodSource("provideTimeCalculator")
+	public void renderTimeSinceMidnightWhen808MinutesHavePassedShouldReturn4(TimeCalculator timeCalculator) {
 		int minutePassed = 808;
 		int expected = 14;
 

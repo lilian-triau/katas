@@ -1,5 +1,5 @@
-#Reverse word lambda
-Thanks to codewars for this kata: https://www.codewars.com/kata/5259b20d6021e9e14c0010d4
+#Everybody hates mondays
+Thanks to codewars for this kata: https://www.codewars.com/kata/58e004f995923fd6470000ca
 
 ##Task
 Nobody likes Mondays! You spent the weekend partying and hanging out with friends, and then Monday comes, and you have to get up early, put on some business clothes and go to work. So how many of these horrible days does someone have to endure? Well, let's find out.

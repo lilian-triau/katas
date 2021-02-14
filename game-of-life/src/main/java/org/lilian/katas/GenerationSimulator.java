@@ -67,14 +67,14 @@ public class GenerationSimulator {
 
 		if (shouldCreateANewCell(currentLife, row, column, livingCellsCount)) {
 			evolvedLife[row][column] = 1;
-		} else if (isCellStillAlive(currentLife, row, column, livingCellsCount)) {
+		} else if (shouldStayAlive(currentLife, row, column, livingCellsCount)) {
 			evolvedLife[row][column] = 1;
 		} else {
 			evolvedLife[row][column] = 0;
 		}
 	}
 
-	private boolean isCellStillAlive(final int[][] originalLife, int row, int column, int livingCellsCount) {
+	private boolean shouldStayAlive(final int[][] originalLife, int row, int column, int livingCellsCount) {
 		return originalLife[row][column] == 1 && (livingCellsCount == 2 || livingCellsCount == 3);
 	}
 
